@@ -133,16 +133,16 @@ class Snake {
                 this.speed(70);
                 break;
             case 40:
-                changeSpeed(60);
+                this.speed(60);
                 break;
             case 50:
-                changeSpeed(50);
+                this.speed(50);
                 break;
             case 60:
-                changeSpeed(40);
+                this.speed(40);
                 break;
             case 70:
-                changeSpeed(30);
+                this.speed(30);
                 break;
             case 300:
                 this.win();
@@ -238,7 +238,7 @@ class Snake {
      */
     resetHead() {
         clearInterval(this.interval);
-        
+
         this.speed = 80;
         this.position = {top: 0, left: 0};
         this.gameEnvironment.snakeElement().css(this.position);
