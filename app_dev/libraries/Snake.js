@@ -13,6 +13,7 @@ class Snake {
         };
         this.direction = "right";
         this.size = 8;
+        this.speed = 80;
         this.queue = [];
         this.interval = null;
     }
@@ -40,7 +41,7 @@ class Snake {
      *
      */
     start() {
-        this.interval = setInterval(this.moveInterval, 70);
+        this.interval = setInterval(this.moveInterval, this.speed);
     }
 
     /**
@@ -95,6 +96,7 @@ class Snake {
 
         // Quand il se mord la queue il perd
         if (that.queue.indexOf((top +"_"+ left)) != -1) {
+            this.loose();
             return false;
         }
 
@@ -126,20 +128,26 @@ class Snake {
         this.gameEnvironment.queueElement().append(element);
 
         // Changement de niveau
-        // switch(this.queue.length) {
-        //     case 20:
-        //         changeSpeed(50);
-        //         break;
-        //     case 40:
-        //         changeSpeed(40);
-        //         break;
-        //     case 50:
-        //         changeSpeed(30);
-        //         break;
-        //     case 300:
-        //         win();
-        //         break;
-        // }
+        switch(this.queue.length) {
+            case 20:
+                this.speed(70);
+                break;
+            case 40:
+                changeSpeed(60);
+                break;
+            case 50:
+                changeSpeed(50);
+                break;
+            case 60:
+                changeSpeed(40);
+                break;
+            case 70:
+                changeSpeed(30);
+                break;
+            case 300:
+                this.win();
+                break;
+        }
     }
 
     /**
@@ -204,5 +212,61 @@ class Snake {
         }
 
         return [top, left];
+    }
+
+    /**
+     * Definie la vitesse de deplacement
+     * @param int speed
+     *
+     */
+    setSpeed(speed) {
+        this.speed = speed
+    }
+
+    /**
+     * Reinitialise la queue
+     *
+     */
+    resetQueue() {
+        this.queue = [];
+        this.gameEnvironment.queueElement().html('');
+    }
+
+    /**
+     * Reinitialise la tete
+     *
+     */
+    resetHead() {
+        clearInterval(this.interval);
+        
+        this.speed = 80;
+        this.position = {top: 0, left: 0};
+        this.gameEnvironment.snakeElement().css(this.position);
+    }
+
+    /**
+     * Lorsque le joueur gagne
+     *
+     */
+    win() {
+        this.gameEnvironment.menuElement().children('h1').html('You win');
+        this.gameEnvironment.menuElement().children('#play').html('play again');
+        this.gameEnvironment.menuElement().fadeIn();
+
+        this.resetHead();
+        this.resetQueue();
+    }
+
+    /**
+     * Lorsque le joueur perd
+     *
+     */
+    loose() {
+        this.gameEnvironment.menuElement().children('h1').html('You loose');
+        this.gameEnvironment.menuElement().children('#play').html('try again');
+        this.gameEnvironment.menuElement().fadeIn();
+
+        this.resetHead();
+        this.resetQueue();
     }
 }
