@@ -4,8 +4,8 @@ class Food {
      * @param GameEnvironment gameEnvironment
      *
      */
-    constructor(gameEnvironment) {
-        this.gameEnvironment = gameEnvironment;
+    constructor() {
+        this.gameEnvironment = Container.gameEnvironment;
 
         this.x = this.generateX();
         this.y = this.generateY();

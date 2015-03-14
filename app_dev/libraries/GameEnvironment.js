@@ -1,10 +1,13 @@
 class GameEnvironment {
-    constructor(playground) {
+    constructor(elements) {
         this.playground = {
-            element: playground,
-            width: parseInt(playground.css('width')),
-            height: parseInt(playground.css('height'))
+            element: elements.playground,
+            width: parseInt(elements.playground.css('width')),
+            height: parseInt(elements.playground.css('height'))
         };
+        this.menu = elements.menu;
+        this.snake = elements.snake;
+        this.queue = elements.queue;
     }
 
     playgroundElement() {
@@ -17,5 +20,25 @@ class GameEnvironment {
 
     playgroundHeight() {
         return this.playground.height;
+    }
+
+    menuElement() {
+        return this.menu;
+    }
+
+    snakeY() {
+        return parseInt(this.snake.css('top'));
+    }
+
+    snakeX() {
+        return parseInt(this.snake.css('left'));
+    }
+
+    snakeElement() {
+        return this.snake;
+    }
+
+    queueElement() {
+        return this.queue;
     }
 }
