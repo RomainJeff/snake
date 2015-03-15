@@ -120,12 +120,16 @@ class Snake {
      *
      */
     addToQueue() {
-        var top = parseInt($('#queue div:last-child').css('top'));
-        var left = parseInt($('#queue div:last-child').css('left'));
-        var element = $(`<div style='top: ${top}px; left: ${left}px'></div>`);
+        var lastChild = this.gameEnvironment.queueLastChild();
+
+        var top = (lastChild == null) ? this.gameEnvironment.snakeElement().css('top') : parseInt(lastChild.style.top);
+        var left = (lastChild == null) ? this.gameEnvironment.snakeElement().css('left') : parseInt(lastChild.style.left);
+        var element = document.createElement(`div`);
+            element.style.left = `${left}px`;
+            element.style.top = `${top}px`;
 
         this.queue.push(top +"_"+ left);
-        this.gameEnvironment.queueElement().append(element);
+        this.gameEnvironment.queueElement().appendChild(element);
 
         // Changement de niveau
         switch(this.queue.length) {
@@ -172,19 +176,21 @@ class Snake {
             left: `${this.position.left}px`
         });
 
+        var i = 0;
+
         // Prochains etats de la queue
-        this.gameEnvironment.queueElement().children().each(function (i) {
-            tmpTop = parseInt($(this).css('top'));
-            tmpLeft = parseInt($(this).css('left'));
+        [].forEach.call(this.gameEnvironment.queueChildren(), function (el) {
+            tmpTop = parseInt(el.style.top);
+            tmpLeft = parseInt(el.style.left);
             that.queue[i] = pTop +"_"+ pLeft;
 
-            $(this).css({
-                left: `${pLeft}px`,
-                top: `${pTop}px`
-            });
+            el.style.left = `${pLeft}px`;
+            el.style.top = `${pTop}px`;
 
             pTop = tmpTop;
             pLeft = tmpLeft;
+
+            i++;
         });
     }
 
@@ -229,7 +235,7 @@ class Snake {
      */
     resetQueue() {
         this.queue = [];
-        this.gameEnvironment.queueElement().html('');
+        this.gameEnvironment.queueElement().innerHTML = '';
     }
 
     /**

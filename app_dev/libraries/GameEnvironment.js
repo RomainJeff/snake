@@ -41,4 +41,12 @@ class GameEnvironment {
     queueElement() {
         return this.queue;
     }
+
+    queueChildren() {
+        return document.querySelectorAll(`#${this.queue.id} div`);
+    }
+
+    queueLastChild() {
+        return document.querySelector(`#${this.queue.id} div:last-child`);
+    }
 }
