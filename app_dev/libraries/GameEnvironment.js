@@ -2,8 +2,8 @@ class GameEnvironment {
     constructor(elements) {
         this.playground = {
             element: elements.playground,
-            width: parseInt(elements.playground.css('width')),
-            height: parseInt(elements.playground.css('height'))
+            width: parseInt(elements.playground.offsetWidth),
+            height: parseInt(elements.playground.offsetHeight)
         };
         this.menu = elements.menu;
         this.snake = elements.snake;

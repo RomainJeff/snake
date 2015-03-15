@@ -1,6 +1,6 @@
 
 Container.gameEnvironment = new GameEnvironment({
-    playground: $('#playground'),
+    playground: document.querySelector('#playground'),
     menu: $('#menu'),
     snake: document.querySelector('#head'),
     queue: document.querySelector('#queue')

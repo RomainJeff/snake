@@ -78,11 +78,14 @@ class Food {
      *
      */
     createElement() {
-        var element = $(`<div id='jewel' style='top: ${this.getY()}px; left: ${this.getX()}px;'></div>`);
+        var element = document.createElement(`div`);
+            element.id = 'jewel';
+            element.style.top = `${this.getY()}px`;
+            element.style.left = `${this.getX()}px`;
 
-        this.gameEnvironment.playgroundElement().append(element);
+        this.gameEnvironment.playgroundElement().appendChild(element);
 
-        return $('#jewel');
+        return element;
     }
 
     /**
@@ -91,7 +94,7 @@ class Food {
      *
      */
     exist() {
-        var jewels = $('#jewel');
+        var jewels = document.querySelectorAll('#jewel');
 
         if (jewels.length > 0) {
             return true;
