@@ -134,19 +134,19 @@ class Snake {
         // Changement de niveau
         switch(this.queue.length) {
             case 20:
-                this.speed(70);
+                this.setSpeed(70);
                 break;
             case 40:
-                this.speed(60);
+                this.setSpeed(60);
                 break;
             case 50:
-                this.speed(50);
+                this.setSpeed(50);
                 break;
             case 60:
-                this.speed(40);
+                this.setSpeed(40);
                 break;
             case 70:
-                this.speed(30);
+                this.setSpeed(30);
                 break;
             case 300:
                 this.win();
