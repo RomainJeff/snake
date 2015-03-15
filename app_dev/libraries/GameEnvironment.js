@@ -27,11 +27,11 @@ class GameEnvironment {
     }
 
     snakeY() {
-        return parseInt(this.snake.css('top'));
+        return parseInt(this.snake.style.top);
     }
 
     snakeX() {
-        return parseInt(this.snake.css('left'));
+        return parseInt(this.snake.style.left);
     }
 
     snakeElement() {

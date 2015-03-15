@@ -122,8 +122,8 @@ class Snake {
     addToQueue() {
         var lastChild = this.gameEnvironment.queueLastChild();
 
-        var top = (lastChild == null) ? this.gameEnvironment.snakeElement().css('top') : parseInt(lastChild.style.top);
-        var left = (lastChild == null) ? this.gameEnvironment.snakeElement().css('left') : parseInt(lastChild.style.left);
+        var top = (lastChild == null) ? this.gameEnvironment.snakeY() : parseInt(lastChild.style.top);
+        var left = (lastChild == null) ? this.gameEnvironment.snakeX() : parseInt(lastChild.style.left);
         var element = document.createElement(`div`);
             element.style.left = `${left}px`;
             element.style.top = `${top}px`;
@@ -171,10 +171,8 @@ class Snake {
         this.position.top = top;
         this.position.left = left;
 
-        this.gameEnvironment.snakeElement().css({
-            top: `${this.position.top}px`,
-            left: `${this.position.left}px`
-        });
+        this.gameEnvironment.snakeElement().style.top = `${this.position.top}px`;
+        this.gameEnvironment.snakeElement().style.left = `${this.position.left}px`;
 
         var i = 0;
 
@@ -247,7 +245,8 @@ class Snake {
 
         this.speed = 80;
         this.position = {top: 0, left: 0};
-        this.gameEnvironment.snakeElement().css(this.position);
+        this.gameEnvironment.snakeElement().style.left = this.position.left;
+        this.gameEnvironment.snakeElement().style.top = this.position.top;
     }
 
     /**

@@ -2,7 +2,7 @@
 Container.gameEnvironment = new GameEnvironment({
     playground: $('#playground'),
     menu: $('#menu'),
-    snake: $('#head'),
+    snake: document.querySelector('#head'),
     queue: document.querySelector('#queue')
 });
 Container.Food = new Food();
