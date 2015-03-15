@@ -1,7 +1,7 @@
 
 Container.gameEnvironment = new GameEnvironment({
     playground: document.querySelector('#playground'),
-    menu: $('#menu'),
+    menu: document.querySelector('#menu'),
     snake: document.querySelector('#head'),
     queue: document.querySelector('#queue')
 });
@@ -17,8 +17,8 @@ Container.Snake = new Snake();
 /**
  * Ecoute le click sur play
  */
-$('#play').on('click', function () {
-    Container.gameEnvironment.menuElement().fadeOut();
+document.querySelector('#play').addEventListener('click', function () {
+    Container.gameEnvironment.hideMenu();
     Container.Snake.start();
 });
 
@@ -26,7 +26,7 @@ $('#play').on('click', function () {
 /**
  * Ecoute les touches du clavier
  */
-$(document).on('keydown', function (e) {
+document.addEventListener('keydown', function (e) {
     var direction = Container.Snake.getDirection();
 
     switch (e.keyCode) {

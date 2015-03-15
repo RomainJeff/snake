@@ -254,9 +254,9 @@ class Snake {
      *
      */
     win() {
-        this.gameEnvironment.menuElement().children('h1').html('You win');
-        this.gameEnvironment.menuElement().children('#play').html('play again');
-        this.gameEnvironment.menuElement().fadeIn();
+        this.gameEnvironment.setMenuTitle('You win');
+        this.gameEnvironment.setMenuPlay('play again');
+        this.gameEnvironment.showMenu();
 
         this.resetHead();
         this.resetQueue();
@@ -267,9 +267,9 @@ class Snake {
      *
      */
     loose() {
-        this.gameEnvironment.menuElement().children('h1').html('You loose');
-        this.gameEnvironment.menuElement().children('#play').html('try again');
-        this.gameEnvironment.menuElement().fadeIn();
+        this.gameEnvironment.setMenuTitle('You loose');
+        this.gameEnvironment.setMenuPlay('try again');
+        this.gameEnvironment.showMenu();
 
         this.resetHead();
         this.resetQueue();

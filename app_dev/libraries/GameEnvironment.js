@@ -10,6 +10,8 @@ class GameEnvironment {
         this.queue = elements.queue;
     }
 
+
+
     playgroundElement() {
         return this.playground.element;
     }
@@ -22,9 +24,29 @@ class GameEnvironment {
         return this.playground.height;
     }
 
+
+
     menuElement() {
         return this.menu;
     }
+
+    setMenuTitle(title) {
+        document.querySelector(`#${this.menu.id} h1`).innerHTML = title;
+    }
+
+    setMenuPlay(text) {
+        document.querySelector(`#${this.menu.id} #play`).innerHTML = text;
+    }
+
+    hideMenu() {
+        this.menu.style.display = 'none';
+    }
+
+    showMenu() {
+        this.menu.style.display = 'block';
+    }
+
+
 
     snakeY() {
         return parseInt(this.snake.style.top);
@@ -37,6 +59,8 @@ class GameEnvironment {
     snakeElement() {
         return this.snake;
     }
+
+
 
     queueElement() {
         return this.queue;
